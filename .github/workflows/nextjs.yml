@@ -28,7 +28,7 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    woring-directory: tictactoe
+    working-directory: tictactoe
     steps:
       - name: Checkout
         uses: actions/checkout@v3
