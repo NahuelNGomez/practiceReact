@@ -8,7 +8,7 @@ export default function WinnerModal({ winner, resetGame }: any) {
 
   return (
 
-    <section className='absolute grid place-items-center w-[100vw] h-[100vh] bg-[#111]/70'>
+    <section className='absolute grid place-items-center w-[100%] h-[100%] bg-[#111]/70'>
       <div className='flex flex-col gap-20 border-2 border-gray-100 rounded-3xl items-center justify-center bg-[#1e1e1e] h-[600px] w-[350px]'>
         <h2 className="underline underline-offset-8 decoration-[#46B2F9]">{winnerText}</h2>
         <header>

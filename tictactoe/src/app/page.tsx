@@ -62,14 +62,14 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="flex flex-col justify-center items-center w-screen h-screen bg-[#2e2e2e] text-4xl">
+    <main className="flex flex-col justify-center items-center h-[100vh] w-[100vw] bg-[#2e2e2e] text-4xl md:text-4xl">
       <h1 className='mb-10 decoration-[#46B2F9] underline underline-offset-8'>Tic tac Toe</h1>
       <ButtonReset resetGame={resetGame}>Reset game</ButtonReset>
       <div className='grid grid-cols-3 grid-cols-3 font-light gap-2 bg-gradient-to-r from-[#b6bfff] via-[#5d61ff] to-[#00d4ff] rounded-xl'>
         {
           board.map((square: String, index: number) => {
             return (
-              <div key={index} className='bg-[#2e2e2e] w-[130px] h-[130px] flex justify-center items-center'>
+              <div key={index} className='bg-[#2e2e2e] w-[20vw] h-[15vh] max-w-[130px] max-h-auto h-auto flex justify-center items-center'>
                 <Square index={index} updateBoard={updateBoard} isInTable={true}>{square}
                 </Square>
               </div>
