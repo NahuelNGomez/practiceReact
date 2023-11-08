@@ -69,7 +69,7 @@ export default function Home() {
         {
           board.map((square: String, index: number) => {
             return (
-              <div key={index} className='bg-[#2e2e2e] w-[20vw] h-[15vh] max-w-[130px] max-h-auto h-auto flex justify-center items-center'>
+              <div key={index} className='bg-[#2e2e2e] w-20 h-24 md:w-30 md:h-30 lg:w-40 lg:h-40 xl:w-50 xl:h-50 max-h-auto h-auto flex justify-center items-center'>
                 <Square index={index} updateBoard={updateBoard} isInTable={true}>{square}
                 </Square>
               </div>
