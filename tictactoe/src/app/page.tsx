@@ -1,7 +1,7 @@
 "use client"
 
 import Square from './components/Square'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ButtonReset from './components/ButtonReset'
 import { checkWinner } from './logic/game'
 import { TURNS } from './constants/constants'
@@ -9,16 +9,9 @@ import WinnerModal from './components/WinnerModal'
 import confetti from 'canvas-confetti'
 
 export default function Home() {
-  const [board, setBoard] = useState<any>(() => {
-    const boardFromLocalStorage = window.localStorage.getItem('board')
-    return (boardFromLocalStorage ? JSON.parse(boardFromLocalStorage) : Array(9).fill(null))
-   })
+  const [board, setBoard] = useState<any>(Array(9).fill(null))
 
-  const [turn, setTurn] = useState(() => {
-
-    const turnFromLocalStorage = window.localStorage.getItem('turn')
-    return (turnFromLocalStorage ? turnFromLocalStorage : TURNS.X)
-  })
+  const [turn, setTurn] = useState(TURNS.X)
 
   const [winner, setWinner] = useState<string | null | boolean>(null) // null, X, O
 
@@ -26,8 +19,10 @@ export default function Home() {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
-    window.localStorage.removeItem('board')
-    window.localStorage.removeItem('turn')
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem('board')
+      window.localStorage.removeItem('turn')
+    }
   }
 
   const updateBoard = (index: any) => {
@@ -58,15 +53,23 @@ export default function Home() {
 
   }
 
+  useEffect(() => {
+    const boardFromLocalStorage = window.localStorage.getItem('board')
+    setBoard(boardFromLocalStorage ? JSON.parse(boardFromLocalStorage) : board)
+
+    const turnFromLocalStorage = window.localStorage.getItem('turn')
+    setTurn(turnFromLocalStorage ? turnFromLocalStorage : turn)
+  }, [])
+
   return (
     <main className="flex flex-col justify-center items-center w-screen h-screen bg-[#2e2e2e] text-4xl">
       <h1 className='mb-10 decoration-[#46B2F9] decoration-[3] decoration underline underline-offset-8'>Tic tac Toe</h1>
       <ButtonReset resetGame={resetGame}>Reset game</ButtonReset>
-      <div className='grid grid-cols-3 grid-cols-3 font-light'>
+      <div className='grid grid-cols-3 grid-cols-3 font-light gap-2 bg-gradient-to-r from-[#b6bfff] via-[#5d61ff] to-[#00d4ff] rounded-xl'>
         {
           board.map((square: String, index: number) => {
             return (
-              <div key={index} className='border-4 w-[130px] h-[130px] flex justify-center items-center'>
+              <div key={index} className='bg-[#2e2e2e] w-[130px] h-[130px] flex justify-center items-center'>
                 <Square index={index} updateBoard={updateBoard} isInTable={true}>{square}
                 </Square>
               </div>
