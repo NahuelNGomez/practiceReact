@@ -9,7 +9,8 @@ export default function Square({ children, isSelected, isInTable, updateBoard, i
     }
     const handlerDummy = () => {
     }
-    const styles = isSelected ? 'p-12 bg-gray-900 rounded-3xl text-6xl' : 'p-12 text-6xl'
+    let styles = isSelected ? 'bg-gradient-to-r from-[#b6bfff]/60 via-[#5d61ff]/60 to-[#00d4ff]/60 ' : ''
+    styles = styles + ' p-12 rounded-3xl text-6xl'
     const handler = isInTable ? handlerClick : handlerDummy;
 
     const icon = () =>{

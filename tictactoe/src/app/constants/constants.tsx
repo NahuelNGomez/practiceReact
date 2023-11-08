@@ -11,7 +11,7 @@ export const ICON_X = () => {
 
 export const ICON_O = () => {
   return (
-    <svg className="h-16 w-16 text-[#b91c51]" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z" />  <circle cx="12" cy="12" r="9" /></svg>
+    <svg className="h-16 w-16 text-[#b91c51] transition duration-1000" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z" />  <circle cx="12" cy="12" r="9" /></svg>
   )
 }
 
