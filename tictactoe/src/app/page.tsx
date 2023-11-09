@@ -25,8 +25,8 @@ export default function Home() {
         {
           games.map((game, index) => {
             return (
-              <div className='p-3'>
-              <GameSelector key={index} name={game.name} link={game.link} icon={game.icon}/>
+              <div className='p-3' key={index}>
+              <GameSelector name={game.name} link={game.link} icon={game.icon}/>
               </div>
             )
           })
