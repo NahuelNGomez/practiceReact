@@ -3,6 +3,10 @@ export const TURNS = {
   O: '⚪'
 }
 
+export const IMG_TIC_TAC_TOE = "/images/tictactoe.png"
+export const LINK_TIC_TAC_TOE = "/tictactoe"
+export const TITLE_TIC_TAC_TOE = "Tic Tac Toe"
+
 export const ICON_X = () => {
   return (
     <svg className="md:h-16 md:w-16 h-10 w-10 text-[#46e3ae]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="15" y1="9" x2="9" y2="15" />  <line x1="9" y1="9" x2="15" y2="15" /></svg>
