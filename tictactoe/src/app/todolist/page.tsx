@@ -5,19 +5,19 @@ import { useState } from "react"
 const initialTasks = [
     {
         id: 1,
-        name: 'tarea1'
+        name: 'Hacer las compras'
     },
     {
         id: 2,
-        name: 'tarea2'
+        name: 'Limpiar la casa'
     },
     {
         id: 3,
-        name: 'tarea3'
+        name: 'Estudiar'
     },
     {
         id: 4,
-        name: 'tarea4'
+        name: 'Hacer deporte'
     },
 ]
 
@@ -26,6 +26,7 @@ export default function ToDoList() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        console.log(tasks)
         const { elements } = event.currentTarget
         const input = elements.namedItem('tarea')
         const isInputValid = input instanceof HTMLInputElement
@@ -40,40 +41,42 @@ export default function ToDoList() {
     }
 
     const handleRemoveElement = (id: number) => () => {
-            setTasks(tasks.filter((task: any) => task.id !== id))
-    }
+        setTasks((prevItems: any[]) => { 
+            return prevItems.filter(currentItem => currentItem.id !== id)
+    }) }
 
 
     return (
-        <>
-            <h1>Lista de tareas</h1>
+        <section className="bg-[#2e2e2e] w-[100vw] h-[100vh] flex flex-col items-center justify-center">
+            <h1 className="text-3xl text-[#aaaaff] underline">Lista de tareas</h1>
             <section className="grid grid-cols-4 items-center justify-center w-[100vw] h-[80vh] px-20">
-                <form className="border bg-[#2e2e2e] flex flex-wrap justify-center items-center h-[300px]" onSubmit={handleSubmit}>
+                <form className=" bg-[#2e2e2e] flex flex-wrap justify-center items-center h-[300px]" onSubmit={handleSubmit}>
                     <label className="p-2">Escribe tu tarea:
                         <input className="m-2 text-black" type="text" id="tarea" name="tarea" />
                     </label>
                     <button className="border p-2 rounded-xl bg-[#111111]">Enviar</button>
                 </form>
-                <aside className="border bg-[#4e4e4e] col-span-3 h-[300px]">
-                    Apartado de tareas
-                    <ul>
-                        <li>Tarea1</li>
-                        <li>Tarea2</li>
-                        <li>Tarea3</li>
-                        <li>Tarea4</li>
-                    </ul>
+                <aside className=" rounded-3xl bg-[#4e4e4e] col-span-3 min-h-[300px] flex flex-col items-center justify-center">
+                    <h2 className="text-lg text-[#aaaaff] underline">Apartado de tareas</h2>
                     {
-                        tasks.map((task: any) => {
-                            return (
-                                <>
-                                    <li key={task.id} className="inline p-2">{task.name}</li>
-                                    <button className="border" onClick={handleRemoveElement(task.id)}> remove</button>
-                                </>
-                            )
-                        })
+                        tasks.length === 0 ? (
+                            <article> <strong>No hay tareas Pendientes 😀</strong></article>
+                        ) : (
+                            tasks.map((task: any) => {
+                                return (
+                                    <article className="px-10 py-2 m-2 bg-[#3e3e3e] rounded-3xl w-[40em] flex flex-wrap justify-between">
+                                        <li key={task.id} className="inline p-2">{task.name}</li>
+                                        <button className="border bg-[#9e9e9e] text-gray-700 rounded-3xl px-4 hover:bg-[#2e2e2e] hover:text-[#9e9e9e] transition duration-300" onClick={handleRemoveElement(task.id)}> remove</button>
+                                    </article>
+                                )
+                            }))
+                    }
+                    {
+
+
                     }
                 </aside>
             </section>
-        </>
+        </section>
     )
 }
