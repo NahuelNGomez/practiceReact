@@ -17,7 +17,9 @@ let games: { name: any; link: any; icon: any }[] = []
 
 games.unshift(createGame({name: TITLE_TIC_TAC_TOE, link: LINK_TIC_TAC_TOE,
               icon: IMG_TIC_TAC_TOE}))
-              
+games.unshift(createGame({name: "To do list", link: "/todolist",
+  icon: IMG_TIC_TAC_TOE}))
+
 export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center h-[100vh] w-[100vw] bg-[#2e2e2e] text-4xl md:text-4xl">
@@ -26,7 +28,7 @@ export default function Home() {
         {
           games.map((game, index) => {
             return (
-              <div className='p-3' key={index}>
+              <div className='p-3' key={index}> 
               <GameSelector name={game.name} link={game.link} icon={game.icon}/>
               </div>
             )
